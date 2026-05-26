@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RadioBlog Studio - Streaming Premium</title>
+    <title>Radios Conexzion.Net - Streaming Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-principal: #0f111a;
-            --bg-secundario: #161925;
-            --bg-tarjeta: #1f2335;
-            --texto-principal: #f8f9fa;
-            --texto-mutado: #a9b1d6;
-            --color-acento: #7aa2f7;
-            --color-premium: #bb9af7;
-            --color-exito: #9ece6a;
+            /* PALETA DE COLORES: Neon Cyberpunk */
+            --bg-principal: #0b0c10;       /* Fondo general más profundo */
+            --bg-secundario: #151a22;      /* Fondo de la sección hero y footer */
+            --bg-tarjeta: #1e2530;         /* Fondo de las tarjetas de planes y reproductores */
+            --texto-principal: #ffffff;    /* Texto blanco puro para mejor contraste */
+            --texto-mutado: #a2a8b5;       /* Texto secundario legible */
+            --color-acento: #00f2fe;       /* Azul/Cian neón para enlaces y reproductores */
+            --color-premium: #f355da;      /* Fucsia/Morado neón para el plan destacado y detalles */
+            --color-exito: #00ff87;        /* Verde neón para los checks de características */
         }
 
         * {
@@ -32,7 +33,7 @@
 
         /* Barra de Navegación */
         header {
-            background-color: rgba(22, 25, 37, 0.8);
+            background-color: rgba(11, 12, 16, 0.85);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
@@ -77,7 +78,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 0 auto;
             padding: 3rem 2rem;
         }
@@ -97,17 +98,17 @@
         .hero-image img {
             width: 220px;
             height: 220px;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Forma orgánica moderna */
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             object-fit: cover;
             border: 4px solid var(--color-acento);
-            box-shadow: 0 0 30px rgba(122, 162, 247, 0.2);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.25);
             transition: all 0.5s ease;
         }
 
         .hero-image img:hover {
             border-radius: 50%;
             border-color: var(--color-premium);
-            box-shadow: 0 0 30px rgba(187, 154, 247, 0.4);
+            box-shadow: 0 0 30px rgba(243, 85, 218, 0.45);
         }
 
         .hero-content {
@@ -120,6 +121,9 @@
             letter-spacing: -1px;
             margin-bottom: 1rem;
             line-height: 1.2;
+            background: linear-gradient(45deg, #ffffff, var(--texto-mutado));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-content p {
@@ -150,11 +154,34 @@
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .player-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.15);
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+
+        /* NUEVO AJUSTE: OCUPA TODO EL CONTORNO DE BORDE A BORDE */
+        .player-cover {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            object-fit: cover; /* Ajusta la imagen para rellenar todo el recuadro sin deformarse */
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+        }
+
+        .player-card:hover .player-cover {
+            border-color: var(--color-acento);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            transform: scale(1.03);
         }
 
         .player-card h3 {
@@ -173,30 +200,42 @@
             width: 100%;
             border-radius: 8px;
             outline: none;
+            margin-top: auto;
         }
 
-        /* Sección Planes (Grid de Tarjetas) */
+        /* Sección Planes */
         .planes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.5rem;
         }
 
         .plan-card {
             background: var(--bg-tarjeta);
-            padding: 3rem 2rem;
+            padding: 2.5rem 1.5rem;
             border-radius: 16px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        /* Destacar el plan intermedio */
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
         .plan-card.destacado {
             border: 2px solid var(--color-premium);
-            transform: scale(1.03);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(243, 85, 218, 0.15);
+        }
+        
+        .plan-card.destacado:hover {
+            transform: scale(1.04) translateY(-5px);
+            box-shadow: 0 12px 35px rgba(243, 85, 218, 0.25);
         }
 
         .badge-destacado {
@@ -208,71 +247,94 @@
             color: var(--bg-principal);
             padding: 0.25rem 1rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .plan-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             margin-bottom: 1rem;
+            color: #ffffff;
         }
 
         .plan-precio {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             margin-bottom: 2rem;
-            color: var(--texto-principal);
+            color: var(--color-acento);
+        }
+        
+        .plan-card.destacado .plan-precio {
+            color: var(--color-premium);
         }
 
         .plan-precio span {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--texto-mutado);
             font-weight: 400;
+            display: block;
+            margin-top: 0.2rem;
         }
 
         .plan-caracteristicas {
             list-style: none;
             margin-bottom: 2.5rem;
             text-align: left;
-            display: inline-block;
-            margin-left: auto;
-            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
         }
 
         .plan-caracteristicas li {
-            margin-bottom: 0.8rem;
             color: var(--texto-mutado);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            padding-left: 1.5rem;
+            position: relative;
         }
 
         .plan-caracteristicas li::before {
             content: "✓";
             color: var(--color-exito);
-            margin-right: 0.5rem;
             font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
         }
 
         .btn-plan {
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: rgba(255, 255, 255, 0.06);
             color: var(--texto-principal);
-            padding: 0.8rem 2rem;
+            padding: 0.8rem 1.5rem;
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
+            font-size: 0.95rem;
             margin-top: auto;
             transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .plan-card.destacado .btn-plan {
             background: var(--color-premium);
             color: var(--bg-principal);
+            border: none;
         }
 
         .btn-plan:hover {
             background: var(--color-acento);
             color: var(--bg-principal);
-            box-shadow: 0 0 15px rgba(122, 162, 247, 0.4);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+            border-color: transparent;
+        }
+
+        .plan-card.destacado .btn-plan:hover {
+            background: var(--color-acento);
+            color: var(--bg-principal);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
         }
 
         /* Footer */
@@ -296,6 +358,9 @@
             }
             .plan-card.destacado {
                 transform: scale(1);
+            }
+            .plan-card.destacado:hover {
+                transform: translateY(-5px);
             }
         }
 
@@ -342,20 +407,24 @@
             <h2 class="section-title">Reproductores Flexibles</h2>
             <div class="reproductores-grid">
                 
+                <!-- REPRODUCTOR 1 -->
                 <div class="player-card">
+                    <img class="player-cover" src="https://xatimg.com/image/2UBUEr85jSiH.png" alt="Portada Emisión Principal">
                     <h3>Emisión Principal (HD)</h3>
                     <p>Audio optimizado en AAC/MP3 de alta fidelidad. Ideal para el sitio web principal de tu estación.</p>
                     <audio class="audio-player" controls>
-                        <source src="https://stream.zeno.fm/f9t7t828w0hx2" type="audio/mpeg">
+                        <source src="https://conexzion.net:8002/stream" type="audio/mpeg">
                         Tu navegador no soporta este reproductor.
                     </audio>
                 </div>
 
+                <!-- REPRODUCTOR 2 -->
                 <div class="player-card">
+                    <img class="player-cover" src="https://xatimg.com/image/UkfBSaj4acul.png" alt="Portada Canal Secundario">
                     <h3>Canal Secundario / Alternativo</h3>
                     <p>Señal de respaldo pensada para conexiones móviles lentas sin perder la experiencia estéreo.</p>
                     <audio class="audio-player" controls>
-                        <source src="https://stream.zeno.fm/f9t7t828w0hx2" type="audio/mpeg">
+                        <source src="https://conexzion.net:8006/stream" type="audio/mpeg">
                         Tu navegador no soporta este reproductor.
                     </audio>
                 </div>
@@ -364,9 +433,24 @@
         </section>
 
         <section id="planes">
-            <h2 class="section-title">Planes de Streaming</h2>
+            <h2 class="section-title">Nuestros Planes de Streaming</h2>
             <div class="planes-grid">
                 
+                <!-- PLAN 1 -->
+                <div class="plan-card">
+                    <h3>Plan Radio Web</h3>
+                    <div class="plan-precio">$500xats<span>/mes</span></div>
+                    <ul class="plan-caracteristicas">
+                        <li>Hasta 50 Oyentes en simultáneo</li>
+                        <li>Calidad de audio: 96 Kbps</li>
+                        <li>AutoDJ: 1 GB de espacio</li>
+                        <li>Ideal para proyectos iniciales o podcast</li>
+                        <li>Soporte básico por Email</li>
+                    </ul>
+                    <a href="#" class="btn-plan">Comenzar</a>
+                </div>
+
+                <!-- PLAN 2 -->
                 <div class="plan-card">
                     <h3>Plan Básico</h3>
                     <div class="plan-precio">$1.000xats<span>/mes</span></div>
@@ -374,11 +458,13 @@
                         <li>Hasta 100 Oyentes en simultáneo</li>
                         <li>Calidad de audio: 128 Kbps</li>
                         <li>AutoDJ: 2 GB de espacio</li>
+                        <li>SSL / HTTPS en Streaming</li>
                         <li>Soporte técnico por Email</li>
                     </ul>
                     <a href="#" class="btn-plan">Comenzar</a>
                 </div>
 
+                <!-- PLAN 3 -->
                 <div class="plan-card destacado">
                     <div class="badge-destacado">El más popular</div>
                     <h3>Plan Profesional</h3>
@@ -388,11 +474,12 @@
                         <li>Calidad de audio: 192 Kbps</li>
                         <li>AutoDJ: 3 GB de espacio</li>
                         <li>Estadísticas avanzadas en tiempo real</li>
-                        <li>Soporte Prioritario</li>
+                        <li>Soporte Prioritario 24/7</li>
                     </ul>
                     <a href="#" class="btn-plan">Contratar Plan</a>
                 </div>
 
+                <!-- PLAN 4 -->
                 <div class="plan-card">
                     <h3>Plan Enterprise</h3>
                     <div class="plan-precio">$2.000xats<span>/mes</span></div>
@@ -401,9 +488,23 @@
                         <li>Calidad de audio máxima: 320 Kbps</li>
                         <li>AutoDJ: 6 GB de espacio</li>
                         <li>Aplicación móvil Android incluida</li>
-                        <li>Soporte 24/7 Premium</li>
+                        <li>Soporte Premium WhatsApp/Email</li>
                     </ul>
                     <a href="#" class="btn-plan">Comenzar</a>
+                </div>
+
+                <!-- PLAN 5 -->
+                <div class="plan-card">
+                    <h3>Plan Máster V.I.P.</h3>
+                    <div class="plan-precio">$3.500xats<span>/mes</span></div>
+                    <ul class="plan-caracteristicas">
+                        <li>Oyentes Ilimitados dedicados</li>
+                        <li>Calidad Máxima 320 Kbps (Baja Latencia)</li>
+                        <li>AutoDJ: 15 GB SSD de espacio</li>
+                        <li>App Android + Web Player Personalizado</li>
+                        <li>Monitoreo y Soporte Dedicado</li>
+                    </ul>
+                    <a href="#" class="btn-plan">Obtener V.I.P</a>
                 </div>
 
             </div>
@@ -412,7 +513,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 RadioBlog Studio. Diseñado con altos estándares de rendimiento.</p>
+        <p>&copy; 2026 Creado por Jahlize. Todos los derechos reservados.</p>
     </footer>
 
 </body>
